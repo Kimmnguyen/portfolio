@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parallax Slideshow with Header</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    .main-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+    }
+
+    .main-header-inner {
+      width: 100%;
+      max-width: 1100px;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left h1 {
+      margin: 0;
+      font-size: 1.5em;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .header-left p {
+      margin: 0;
+      font-size: 1em;
+      letter-spacing: 1px;
+      color: #ccc;
+    }
+
+    .header-right a {
+      color: white;
+      text-decoration: none;
+      margin-left: 0px;
+      font-size: 1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    .header-right a:hover {
+      color: #4cc9f0;
+    }
+
+    .background {
+      background-image: linear-gradient(#000203 0%, #00345E 85%, #004D89 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      padding-top: 120px;
+    }
+
+    .slideshow-container {
+      max-width: 900px;
+      margin: auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      text-align: center;
+    }
+
+    .slide img {
+      width: 100%;
+      max-height: 900px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .caption {
+      margin-top: 20px;
+      font-size: 1.5em;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      color: white;
+      font-size: 2em;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      user-select: none;
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ffffff;
+    }
+
+    .speech-section {
+      background: #ffffff;
+      color: #111;
+      padding: 100px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .speech-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .speech-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .speech-section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .quote {
+      font-size: 1.4em;
+      font-style: italic;
+      line-height: 1.8;
+      color: #333;
+      min-height: 100px;
+      transition: opacity 0.8s ease;
+    }
+
+    .team-section h2 {
+      font-size: 2em;
+      color: #00345E;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .team-grid .member:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease;
+    }
+
+    #bio-venkat {
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+    }
+
+    #bio-venkat.active {
+      max-height: 1000px;
+      opacity: 1;
+    }
+
+    .team-grid .member {
+  color: #111; /* or use #333 for softer dark text */
+}
+
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="main-header-inner">
+      <div class="header-left">
+        <h1>Arcellx Intern Memories 2025</h1>
+        <p>Rockville, MD</p>
+      </div>
+      <nav class="header-right">
+        <a href="#team">Galeries</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="background">
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="assets/Arcellx_intern/Kpot_time.jpg" alt="Kpot time!">
+        <div class="caption">Kpot time!</div>
+      </div>
+      <div class="slide fade">
+        <img src="assets/Arcellx_intern/Rayanna_fomo_without_rayanna.png" alt="Rayanna FOMO">
+        <div class="caption">Rayanna's Fomo event without Rayanna</div>
+      </div>
+      <div class="slide fade">
+        <img src="assets/Arcellx_intern/The_boyz_at_Capitol.png" alt="The Boyz at Capitol">
+        <div class="caption">The boyz at Capitol</div>
+      </div>
+      <div class="slide fade">
+        <img src="assets/Arcellx_intern/Favorite_spot.jpg" alt="The Boyz at Capitol">
+        <div class="caption">Favorite Interns' Spot</div>
+      </div>
+
+      <div class="controls">
+        <span class="prev" onclick="plusSlides(-1)">❮</span>
+        <span class="next" onclick="plusSlides(1)">❯</span>
+      </div>
+      <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="speech-section" id="speech">
+    <div class="speech-inner">
+      <h2>Greatest speeches ever</h2>
+      <div class="quote" id="quoteBox">
+        “Science brought us together,<br>but food trips and laughter bonded us.”
+      </div>
+    </div>
+  </section>
+<section id="team" class="team-section">
+  <div class="speech-inner">
+    <h2>We the People</h2>
+
+    <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin: 40px auto; max-width: 1100px;">
+      
+      <div class="member" onclick="showBio('rika')" style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; padding: 20px;">
+        <img src="assets/Arcellx_intern/Rika.png" alt="Rika Felten" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover;">
+        <h3>Rika Felten</h3>
+        <p><em>Department:</em> MSAT</p>
+      </div>
+
+      <div class="member" onclick="showBio('rayanna')" style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; padding: 20px;">
+        <img src="assets/Arcellx_intern/Rayanna.png" alt="Rayanna Abedi" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover;">
+        <h3>Rayanna Abedi</h3>
+        <p><em>Department:</em> Quality Operations</p>
+      </div>
+
+      <div class="member" onclick="showBio('kimin')" style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; padding: 20px;">
+        <img src="assets/Arcellx_intern/Kim.JPG" alt="Kimin Nguyen" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover;">
+        <h3>Kimin Nguyen</h3>
+        <p><em>Department:</em> Discover</p>
+      </div>
+      <!-- Add more members here -->
+      
+    </div>
+  </div>
+</section>
+
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      const slides = document.getElementsByClassName("slide");
+      const dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].classList.add("active");
+    }
+
+    setInterval(() => plusSlides(1), 5000);
+
+    const quotes = [
+      "“Guys, I have a FOMO”<br><em>~ Rayanna Abedi</em>",
+      "“Yeah, Morgan County”<br><em>~ Daniel Cline</em>",
+      "“It's your world and we are just living in it”<br><em>~Rayanna Abedi</em>",
+      "“Pop that that honey like a granade”",
+      "“Do you have LLLS?” <br><em>~Daniel Cline </em>"
+    ];
+
+    let quoteIndex = 0;
+    const quoteBox = document.getElementById("quoteBox");
+
+    setInterval(() => {
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteBox.innerHTML = quotes[quoteIndex];
+        quoteBox.style.opacity = 1;
+      }, 800);
+    }, 5000);
+
+    const speechSection = document.getElementById('speech');
+    window.addEventListener('scroll', () => {
+      const sectionTop = speechSection.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight * 0.8;
+      if (sectionTop < screenPosition) {
+        speechSection.classList.add('visible');
+      }
+    });
+
+    function showBio(id) {
+      document.getElementById('bio-' + id).classList.add('active');
+    }
+
+    function closeBio(id) {
+      document.getElementById('bio-' + id).classList.remove('active');
+    }
+  </script>
+</body>
+</html>
+
+    

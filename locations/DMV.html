@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kim's D.C. Food Reviews</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    /* Flip card styles */
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 200px;
+      width: 350px;
+      perspective: 1000px;
+      margin-bottom: 20px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      border-radius: 8px;
+      backface-visibility: hidden;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .flip-card-front {
+      z-index: 2;
+    }
+
+    .flip-card-front h2 {
+      margin-top: 0;
+      color: #e23e57;
+    }
+
+    .rating {
+      margin: 8px 0;
+    }
+
+    .stars {
+      color: gold;
+    }
+
+    .price-level {
+      color: #555273;
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Home Section */
+    #home {
+      position: relative;
+      background: url('../assets/Dmv.jpeg') center/cover no-repeat;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .home-content h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .home-content span {
+      color: #e23e57;
+    }
+
+    .home-content p {
+      max-width: 1000px;
+      margin: auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #e23e57;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background-color 0.3s;
+    }
+
+    .cta-button:hover {
+      background-color: #c13148;
+    }
+
+    .scroll-down {
+      margin-top: 40px;
+      font-size: 1em;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
+    .falling-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <section id="home">
+    <div class="falling-stars"></div>
+    <div class="home-content">
+      <h1>80 days in <span>DMV</span></h1>
+      <a href="#reviews" class="cta-button">Explore More</a>
+      <a href="../arcellx2.html" class="cta-button">Arcellx Internship</a>
+      <div class="scroll-down">Scroll ↓</div>
+    </div>
+  </section>
+
+  <div class="container" id="reviews">
+    <h1>No cooking challenge!!!</h1>
+
+  <div class="card-grid">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>1. Eat a Lao</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "The food portion is large, affordable price, but the soup is not so great!"
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>2. Farmsook Thai Kitchen</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "A little 'Americanized' Thai taste. Huge portions. Not so spicy."
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>3. Kpot Korean BBQ & Hot Pot</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Lowkey overprice for all you can eat bbq. The restaurant has limited protein options ~ mostly are beef and some pork. The egg steam is good"
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>4. Yu Noodles Cafe</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Okayish Chinese noodle restaurant."
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>5. Naz's Halal Food</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Taste is kinda plain, not so worth it."
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>6. The Halal Guys</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★☆☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Food is just mid."
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>7. Osaka Ramen & Sushi</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Ramen is okay, seafood ramen not so great. Stick to traditional."
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>8. Akira Ramen & Izakaya</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Better than Osaka Ramen. Tempura & Japanese pancake are okayish"
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>9. Ka Brasa Latin Cuisine</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Patrick said it's good for latino taste, but I'm not a fan though."
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>10. Hello Vietnam! Restaurant</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "As a proud Vietnamese, I can tell the taste over here is authentic. The pho broth is great. There are also some other Viet dishes"
+        </div>
+      </div>
+    </div>
+
+     <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>11. Kuya Ja's Lechon Belly</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "A filipino restaurant. ⚠️Warning: There are fat on every single dishes. Great portion"
+        </div>
+      </div>
+      </div>
+ 
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>12. Jollibee</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★★</span></div>
+        </div>
+        <div class="flip-card-back">
+          "I would hype up. 100% worth it. Koki in PD team bought a whole bucket of chicken and tried the ube pie (even he is lactose intolernace). The fries is so good"
+        </div>
+      </div>
+      </div>
+
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>13. Honeymoon Chicken</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★☆☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "I am picky or they hate me. My chicken in the chicken sandwich was dry while Patrick's & Daniel was juicy. Buns are good "
+        </div>
+      </div>  
+      </div>
+
+
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>14.  Yoyogi sushi</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "My go-to cheap good sushi place. Usually cheap and good taste don't go well together. This place is an exception. I ate their sushi for 6 times on my 10-week internship and didn't get food poision yet "
+        </div>
+      </div>  
+      </div>
+
+
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>16. Iron Age </h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★★☆</span></div>
+        </div>
+        <div class="flip-card-back">
+          "Lowkey expensive for all you can eat bbq ~ 35 ish/ person. They has limited options of protein (mostly are beef, 3 or 4 are pork). Also they start the time when you step in "
+        </div>
+      </div>  
+      </div>
+
+
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>18. Spicelife Indian Fare</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+           "Idk if it is authentic indian food or not. Neha and I went there for Buddy's lunch ~ her opinions may be more valid than mine. They added cilantro in my bowl which ruin the my lunch :)"
+        </div>
+      </div>  
+      </div>
+
+
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>19. Kung Fu 12 Szechuan Rockville</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+           "As an ABC, I would say this is not authentic place for Peiking Duck. However, the duck is crispy which is worth to try but lower your expectations. Great portions, most of up ended up with to go box"
+        </div>
+      </div> 
+      </div>
+
+
+
+      <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2>20. Botanero Restaurant</h2>
+          <div class="rating"><strong>Price:</strong> <span class="price-level">💲💲</span> &nbsp;&nbsp;
+            <strong>Taste:</strong> <span class="stars">★★★☆☆</span></div>
+        </div>
+        <div class="flip-card-back">
+           "A Discover go-to place for happy hour. I went there to get myself some "Happy water" as well. The regular meal is lowkey high, but the happy menu is great. Food portion is not so great, but truffle mac& cheese is my fav"
+        </div>
+      </div> 
+      </div>
+
+
+  </div>
+</body>
+</html>
+
+</html>
